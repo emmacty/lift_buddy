@@ -1,0 +1,17 @@
+<div class="container mt-3">
+  <h1>Tous les exercises</h1>
+  <ul>
+    <% @exercises.each do |exercise| %>
+      <li>
+        <p><%= exercise.name %></p>
+        <%= link_to "Supprimer", exercise_path(exercise), data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) ? Cela supprimera cette exercice dans toutes vos séances !"}   %>
+      </li>
+    <% end %>
+  </ul>
+  <h4>Ajouter un exercice :</h4>
+  <%= simple_form_for(@exercise) do |f| %>
+      <%= f.input :name, label: "Nom" %>
+      <%= f.submit "Ajouter" %>
+  <% end %>
+
+</div>

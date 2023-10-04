@@ -1,0 +1,32 @@
+<div class="container mt-3">
+  <h1><%= @workout.name %></h1>
+  <p><%= @workout.date %></p>
+  <% @workout.workout_exercises.each do |exercise| %>
+      <p><%= exercise.exercise.name %></p>
+      <p><%= exercise.weight %></p>
+      <p><%= exercise.number_of_series %> x <%= exercise.repetitions %></p>
+  <% end %>
+  <%= link_to "Modifier cette séance", edit_workout_path(@workout) %>
+  <%= link_to "Supprimer cette séance", workout_path(@workout), data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) ?"} %>
+
+  <% if Favorite.find_by(workout: @workout).blank? %>
+    <%= link_to "Ajouter aux favoris", workout_favorites_path(@workout), data: {turbo_method: :post} %>
+  <% end %>
+  <h4>Sélectionner une séance favorite</h4>
+    <%= simple_form_for [@workout, @workout_exercise] do |f| %>
+      <%= f.input :exercise, collection: current_user.exercises.all.order(:name), label: "Exercice" %>
+      <%= f.input :weight, label: "Charge" %>
+      <%= f.input :number_of_series, label: "Nombre de séries" %>
+      <%= f.input :repetitions, label: "Nombre de répétitions" %>
+      <%= f.submit "Ajouter" %>
+  <% end %>
+
+  <h4>Ajouter un exercice :</h4>
+  <%= simple_form_for [@workout, @workout_exercise] do |f| %>
+      <%= f.input :exercise, collection: current_user.exercises.all.order(:name), label: "Exercice" %>
+      <%= f.input :weight, label: "Charge" %>
+      <%= f.input :number_of_series, label: "Nombre de séries" %>
+      <%= f.input :repetitions, label: "Nombre de répétitions" %>
+      <%= f.submit "Ajouter" %>
+  <% end %>
+</div>

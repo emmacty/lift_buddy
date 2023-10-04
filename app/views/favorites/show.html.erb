@@ -1,0 +1,9 @@
+<div class="container mt-3">
+  <h1><%= @favorite.workout.name %></h1>
+  <% @favorite.workout.workout_exercises.each do |exercise| %>
+    <p><%= exercise.exercise.name %></p>
+    <p><%= exercise.weight %></p>
+    <p><%= exercise.number_of_series %> x <%= exercise.repetitions %></p>
+  <% end %>
+  <p><%= link_to "Supprimer", favorite_path(@favorite), data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr(e) ?"} %></p>
+</div>

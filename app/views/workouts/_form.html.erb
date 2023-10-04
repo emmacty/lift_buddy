@@ -1,0 +1,6 @@
+<%= simple_form_for(workout) do |f| %>
+	<%= f.input :name, label: "Titre" %>
+	<%= f.input :date, label: "Date" %>
+	<%= f.input :comment, label: "Commentaire" %>
+	<%= f.submit "Enregistrer ma séance", class: "mt-3" %>
+<% end %>

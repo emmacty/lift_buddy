@@ -1,0 +1,8 @@
+<div class="container mt-3">
+  <h1>Bonjour !</h1>
+  <%= link_to "Ajouter une séance", new_workout_path %>
+  <% @workouts.each do |workout| %>
+    <p><%= link_to workout.name, workout_path(workout) %></p>
+    <p><%= workout.date %></p>
+  <% end %>
+</div>
